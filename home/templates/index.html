@@ -6,49 +6,117 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
     <title>Document</title>
+    <Style>
+      * {
+          Box-Sizing: Border-Box;
+      }
 
-    <script>
-      function calculateGST() {
-        // Get input values
-        var originalPrice = parseFloat(document.getElementById("originalPrice").value);
-        var gstRate = parseFloat(document.getElementById("gstRate").value);
-        var calculateMode = document.getElementById("calculateMode").value;
-    
-        // Initialize variables for results
-        var gstAmount, totalPrice, taxAmount;
-    
-        if (calculateMode === "exclusive") {
-            // Calculate GST Amount
-            gstAmount = (originalPrice * gstRate) / 100;
-    
-            // Calculate Total Price
-            totalPrice = originalPrice + gstAmount;
-    
-            // Calculate Tax Amount
-            taxAmount = originalPrice;
-        } else {
-            // Calculate GST Amount
-            gstAmount = (originalPrice * gstRate) / (100 + gstRate);
-    
-            // Calculate Total Price
-            totalPrice = originalPrice;
-    
-            // Calculate Tax Amount
-            taxAmount = originalPrice - gstAmount;
-        }
-    
-        // Display results on the webpage
-        document.getElementById("gstAmount").value = gstAmount.toFixed(2);
-        document.getElementById("totalPrice").value = totalPrice.toFixed(2);
-        document.getElementById("taxAmount").value = taxAmount.toFixed(2);
-    }
-      </script>
+      Body {
+          Font-Family: Arial, Sans-Serif;
+          Margin: 0;
+          Background-Color: #F9f9f9;
+      }
+
+      .Container {
+         Background-Color: #009fb7;
+          Border-Color: #000;
+          Border-Radius: 5px;
+          Box-Shadow: 0 0 5px Rgba(0, 0, 0, 0.1);
+          Padding: 20px;
+          Margin: 50px Auto;
+          Max-Width: 385px;
+          Text-Align: Center;
+       
+      }
+
+      .Input-Group {
+          Display: Flex;
+          Flex-Direction: Column;
+          Margin-Bottom: 20px;
+          Width: 100%;
+          Max-Width: 400px;
+      }
+
+      .Input-Group Label {
+          Margin-Bottom: 5px;
+          Font-Weight: Bold;
+      }
+
+      .Input-Group Input {
+          Padding: 10px;
+          Border-Radius: 5px;
+          Border: 1px Solid #Ccc;
+          Font-Size: 16px;
+          Width: 100%;
+          Margin-Bottom: 10px;
+      }
+
+      .Input-Group Input:Focus {
+          Outline: None;
+          Border-Color: #555;
+      }
+
+      .Calculate-Btn {
+          Padding: 10px 20px;
+          Border-Radius: 5px;
+          Border: None;
+          Background-Color: #FF0064;;
+          Color: #Fff;
+          Font-Size: 16px;
+          Cursor: Pointer;
+          Transition: All 0.2s Ease-In-Out;
+      }
+
+      .Calculate-Btn:Hover {
+          Background-Color: #3e8e41;
+      }
+      .dolor {
+        font-size: 20px;
+        color: whitesmoke;
+      }
+      .Result {
+          Font-Size: 24px;
+          Font-Weight: Bold;
+          Margin-Top: 20px;
+          Text-Align: Center;
+          Color: #Fff;
+      }
+
+      .bottom {
+        display: flex;
+        gap: 10px;
+        justify-content: center;
+      }
+      .name {
+        font-size: 16px;
+        margin-right: 10px;
+      }
+      @Media Only Screen And (Min-Width: 768px) {
+          .Container {
+              Margin-Top: 35px;
+          }
+      }
+  .Input-Group Select {
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  font-size: 16px;
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+.Input-Group Select:focus {
+  outline: none;
+  border-color: #555;
+}
+
+  </Style>
     
 
 </head>
 <body>
   
-    <nav class="navbar navbar-dark bg-primary">
+    <nav class="navbar sticky-top navbar-dark bg-primary">
         <div class="container-fluid">
           <a class="navbar-brand" href="#">
            <!-- <img src="/docs/5.0/assets/brand/bootstrap-logo.svg" alt="" width="30" height="24" class="d-inline-block align-text-top">-->
@@ -56,84 +124,87 @@
           </a>
         </div>
     </nav>
-    {% load static %}
-      <div class="card mb-3">
-        <img src="{% static 'images/img1.jpeg' %}" class="card-img-top" alt="image_for_tit" height="300px">
-        <div class="card-body">
-         
-          <div class="row g-2">
-            <div class="col-md">
-              <b><label for="floatingInputGrid">Amount</label></b>
-              <div class="form-floating">
-                <input type="text" class="form-control" id="originalPrice" placeholder="Enter the Amount" >
-                
-              </div>
-            </div>
-            <div class="col-md">
-              <b><label for="floatingSelectGrid">GST %</label></b>
-              <div class="form-floating">
-                <select class="form-select" id="gstRate" aria-label="Floating label select example" >
-                  <option selected>Choose the GST %</option>
-                  <option value="5">5 %</option>
-                  <option value="12">12 %</option>
-                  <option value="18">18 %</option>
-                  <option value="28">28 %</option>
-                </select>
-                
-              </div>
-            </div>
-            <div class="col-md">
-              <b><label for="floatingSelectGrid">Tax</label></b>
-              <div class="form-floating">
-                <select class="form-select" id="calculateMode" aria-label="Floating label select example">
-                  <option selected>Select the TAX</option>
-                  <option value="inclusive">Inclusive</option>
-                  <option value="exclusive">Exclusive</option>
-                  
-                </select>
-                
-              </div>
-            </div>
-          </div>
 
-        
-
-          <br>
-
-          <center><button type="button" class="btn btn-primary" onclick="calculateGST()">Calculate GST</button></center>
-        </form>
-
-          <br>
-
-          <div class="row g-2">
-            <div class="col-md">
-              <b><label for="floatingInputGrid">Actual Amount</label></b>
-              <div class="form-floating">
-                <input type="text" class="form-control" id="taxAmount" >
-                
-              </div>
-            </div>
-            <div class="col-md">
-              <b><label for="floatingInputGrid">GST Amount</label></b>
-              <div class="form-floating">
-                <input type="text" class="form-control" id="gstAmount" >
-                
-              </div>
-            </div>
-            <div class="col-md">
-              <b><label for="floatingInputGrid">Total Amount</label></b>
-              <div class="form-floating">
-                <input type="text" class="form-control" id="totalPrice" >
-                
-              </div>
-            </div>
-          </div>
-
-
-
-        </div>
-      </div>
+    <Div Class="Container">
+      <H1 Style="Color:#Fff;">GST Calculator</H1>
+      <Div Class="Input-Group">
+          <Label For="Amount" Style="Color:#Fff;">Amount:</Label>
+          <Input Type="Number" Id="originalPrice" Placeholder="₹ Enter Amount">
+      </Div>
+      <Div Class="Input-Group">
+          <Label For="Gst" Style="Color:#Fff;">GST %:</Label>
+          
+    <Select Id="gstRate">
+    
+    <Option Value="5">5%</Option>
+    <Option Value="12">12%</Option>
+    <Option Value="18">18%</Option>
+    <Option Value="28">28%</Option>
       
+    </Select>
+      </Div>
+  
+  <Div Class="Input-Group">
+  <Label For="CalculationType" Style="Color:#Fff;">Calculation Type:</Label>
+  <Select Id="calculateMode">
+      <Option Value="exclusive">Exclusive</Option>
+      <Option Value="inclusive">Inclusive</Option>
+  </Select>
+</Div>
+  <section class="bottom">
+     <p class="dolor">
+₹ <span Class="Result" Id="taxAmount"></span> <br>
+      <span class="name">Actual Amount</span></p>
+      <p class="dolor">      
+      ₹ <span Class="Result" Id="gstAmount"></span> <br>
+
+
+      <span class="name">Gst Amount</span></p>
+      <p class="dolor">     ₹ <span Class="Result" Id="totalPrice"></span>	<br>	
+      <span class="name">Total Amount</span></p>
+    </section>
+  </Div>
+  
+    <script>
+      // Get input elements
+      var originalPriceInput = document.getElementById("originalPrice");
+      var gstRateInput = document.getElementById("gstRate");
+      var calculateModeSelect = document.getElementById("calculateMode");
+      var gstAmountOutput = document.getElementById("gstAmount");
+      var totalPriceOutput = document.getElementById("totalPrice");
+      var taxAmountOutput = document.getElementById("taxAmount");
+
+      // Add event listeners to the input fields
+      originalPriceInput.addEventListener("input", calculateGST);
+      gstRateInput.addEventListener("input", calculateGST);
+      calculateModeSelect.addEventListener("change", calculateGST);
+
+      // Function to calculate GST
+      function calculateGST() {
+          var originalPrice = parseFloat(originalPriceInput.value) || 0;
+          var gstRate = parseFloat(gstRateInput.value) || 0;
+          var calculateMode = calculateModeSelect.value;
+
+          if (calculateMode === "exclusive") {
+              var gstAmount = (originalPrice * gstRate) / 100;
+              var totalPrice = originalPrice + gstAmount;
+              var taxAmount = originalPrice;
+          } else {
+              var gstAmount = (originalPrice * gstRate) / (100 + gstRate);
+              var totalPrice = originalPrice;
+              var taxAmount = originalPrice - gstAmount;
+          }
+
+          gstAmountOutput.textContent = gstAmount.toFixed(2);
+          totalPriceOutput.textContent = totalPrice.toFixed(2);
+          taxAmountOutput.textContent = taxAmount.toFixed(2);
+      }
+
+      // Initial calculation
+      calculateGST();
+  </script>
+
+   
     
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 
